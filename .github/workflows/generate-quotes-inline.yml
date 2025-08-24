@@ -2,7 +2,7 @@ name: Generate Quotes Inline
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/30 * * * *"   # kas 30 min.
 
 permissions:
   contents: write
@@ -26,92 +26,86 @@ jobs:
       - name: Install deps
         run: |
           python -m pip install --upgrade pip
-          pip install yfinance pyyaml pandas requests
+          pip install yfinance pyyaml pandas requests lxml html5lib
 
-      # 1) S&P top50 + BTC + top10 alts -> data/symbols_dynamic.yaml
-      - name: Build dynamic universe
+      # ---------- QUOTES su papildomais laukais ----------
+      - name: Generate data/quotes.json (rich fields)
         run: |
-          mkdir -p data
-          python - <<'PY'
-          import pandas as pd, requests, yaml, json, re
-          import yfinance as yf
-
-          url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-          tables = pd.read_html(url)
-          sp = tables[0]
-          tickers = sp["Symbol"].astype(str).str.replace(r"[^\w\.]", "", regex=True).tolist()
-
-          caps = []
-          for t in tickers:
-              try:
-                  info = yf.Ticker(t).fast_info
-                  mc = getattr(info, "market_cap", None)
-                  if mc is None:
-                      mc = yf.Ticker(t).info.get("marketCap")
-                  if mc: caps.append((t, mc))
-              except Exception:
-                  pass
-          caps.sort(key=lambda x: x[1], reverse=True)
-          top50 = [t for t,_ in caps[:50]]
-
-          cg = requests.get(
-              "https://api.coingecko.com/api/v3/coins/markets",
-              params={"vs_currency":"usd","order":"market_cap_desc","per_page":11,"page":1,"sparkline":"false"},
-              timeout=30
-          ).json()
-          crypto = []
-          for c in cg:
-              s = f"{c['symbol'].upper()}-USD"
-              base = s.split("-")[0]
-              crypto.append({"id": base, "asset_class":"crypto", "source":"yfinance", "query": s})
-
-          universe = [{"id": t, "asset_class":"equity", "source":"yfinance", "query": t} for t in top50] + crypto
-          out = {"generated_from":"wiki+coingecko","equities_count":len(top50),"crypto_count":len(crypto),"universe":universe}
-          with open("data/symbols_dynamic.yaml","w") as f:
-              yaml.safe_dump(out, f, sort_keys=False)
-          print("WROTE data/symbols_dynamic.yaml with", len(universe), "symbols")
-          PY
-      - run: |
-          echo "== After symbols generation =="
-          ls -la
-          ls -la data
-          echo "---- symbols_dynamic.yaml (first 30 lines) ----"
-          head -n 30 data/symbols_dynamic.yaml
-
-      # 2) Quotes -> data/quotes.json
-      - name: Generate quotes.json
-        run: |
+          set -e
           python - <<'PY'
           import json, yaml, os
           from datetime import datetime, timezone
           import yfinance as yf
 
-          with open("data/symbols_dynamic.yaml","r") as f:
+          # 1) Visata iš symbols.yaml (repo root)
+          with open("symbols.yaml","r") as f:
               uni = yaml.safe_load(f)["universe"]
 
-          def last_price(ticker):
+          # 2) Helper: paimti paskutinę žvakę su fallback
+          def last_bar(ticker: str):
               t = yf.Ticker(ticker)
               df = None
-              try: df = t.history(period="1d", interval="1m")
-              except Exception: df = None
+              for per, iv in [("1d","1m"), ("5d","5m"), ("1mo","1d")]:
+                  try:
+                      df = t.history(period=per, interval=iv)
+                      if df is not None and not df.empty:
+                          break
+                  except Exception:
+                      pass
               if df is None or df.empty:
-                  try: df = t.history(period="5d", interval="5m")
-                  except Exception: df = None
-              if df is None or df.empty:
-                  try: df = t.history(period="1mo", interval="1d")
-                  except Exception: df = None
-              if df is None or df.empty: return None, None
-              last = df.tail(1)
-              try: ts = last.index[0].tz_convert("UTC").isoformat()
-              except Exception: ts = datetime.now(timezone.utc).isoformat()
-              return float(last["Close"].iloc[0]), ts
+                  return None
+              row = df.tail(1).iloc[0]
+              ts = df.tail(1).index[0]
+              try:
+                  ts = ts.tz_convert("UTC").isoformat()
+              except Exception:
+                  ts = datetime.now(timezone.utc).isoformat()
 
+              # Greita papildoma info
+              fast = {}
+              try:
+                  fi = t.fast_info
+                  fast = {
+                      "market_cap": getattr(fi, "market_cap", None),
+                      "year_high": getattr(fi, "year_high", None),
+                      "year_low": getattr(fi, "year_low", None),
+                      "previous_close": getattr(fi, "previous_close", None),
+                      "currency": getattr(fi, "currency", None),
+                  }
+              except Exception:
+                  pass
+
+              return {
+                  "price": float(row["Close"]),
+                  "open": float(row.get("Open", row["Close"])),
+                  "high": float(row.get("High", row["Close"])),
+                  "low": float(row.get("Low", row["Close"])),
+                  "volume": float(row.get("Volume", 0) or 0),
+                  "ts": ts,
+                  **{k: v for k, v in fast.items() if v is not None},
+              }
+
+          # 3) Sudarom quotes su papildomais laukais + % pokytis
           quotes = []
           for it in uni:
-              px, ts = last_price(it["query"])
-              if px is None: continue
-              quotes.append({"id":it["id"],"asset_class":it["asset_class"],"source":it["source"],
-                             "query":it["query"],"price":px,"ts":ts})
+              bar = last_bar(it["query"])
+              if not bar:
+                  continue
+              prev = bar.get("previous_close")
+              pct = None
+              if prev:
+                  try:
+                      pct = (bar["price"] / prev - 1) * 100.0
+                  except Exception:
+                      pct = None
+              quotes.append({
+                  "id": it["id"],
+                  "asset_class": it["asset_class"],
+                  "source": it["source"],
+                  "query": it["query"],
+                  **bar,
+                  **({"pct_change": pct} if pct is not None else {}),
+              })
 
           out = {"generated_at": datetime.now(timezone.utc).isoformat(), "quotes": quotes}
           os.makedirs("data", exist_ok=True)
@@ -120,11 +114,11 @@ jobs:
           print("WROTE data/quotes.json with", len(quotes), "quotes")
           PY
       - run: |
-          echo "---- quotes.json (first 40 lines) ----"
-          head -n 40 data/quotes.json
+          echo "---- quotes.json (first 60 lines) ----"
+          head -n 60 data/quotes.json || true
 
-      # 3) Indicators -> data/indicators.json
-      - name: Generate indicators.json (RSI14, SMA20/50)
+      # ---------- (Pasirinktinai) INDIKATORIAI ----------
+      - name: Generate data/indicators.json (RSI14, SMA20/50)
         run: |
           python - <<'PY'
           import json, yaml, os
@@ -132,12 +126,12 @@ jobs:
           import yfinance as yf
           import pandas as pd
 
-          with open("data/symbols_dynamic.yaml","r") as f:
+          with open("symbols.yaml","r") as f:
               uni = yaml.safe_load(f)["universe"]
 
           def fetch_df(ticker):
               t = yf.Ticker(ticker)
-              for per,iv in [("1mo","1d"),("5d","5m")]:
+              for per, iv in [("1mo","1d"), ("5d","5m")]:
                   try:
                       df = t.history(period=per, interval=iv)
                       if df is not None and not df.empty:
@@ -148,20 +142,27 @@ jobs:
 
           def indicators(df: pd.DataFrame):
               out = {}
-              if df is None or df.empty or "Close" not in df.columns: return out
+              if df is None or df.empty or "Close" not in df.columns:
+                  return out
               c = df["Close"].dropna()
-              if len(c)>=20: out["sma20"]=float(c.rolling(20).mean().iloc[-1])
-              if len(c)>=50: out["sma50"]=float(c.rolling(50).mean().iloc[-1])
-              if len(c)>=15:
-                  d=c.diff(); up=d.clip(lower=0).rolling(14).mean(); down=(-d.clip(upper=0)).rolling(14).mean()
-                  rs=up/down; rsi=100-(100/(1+rs))
-                  out["rsi14"]=float(rsi.iloc[-1])
+              if len(c) >= 20:
+                  out["sma20"] = float(c.rolling(20).mean().iloc[-1])
+              if len(c) >= 50:
+                  out["sma50"] = float(c.rolling(50).mean().iloc[-1])
+              if len(c) >= 15:
+                  d = c.diff()
+                  up = d.clip(lower=0).rolling(14).mean()
+                  down = (-d.clip(upper=0)).rolling(14).mean()
+                  rs = up / down
+                  rsi = 100 - (100 / (1 + rs))
+                  out["rsi14"] = float(rsi.iloc[-1])
               return out
 
-          rows=[]
-          for it in uni:
+          rows = []
+          for it in yaml.safe_load(open("symbols.yaml"))["universe"]:
               ind = indicators(fetch_df(it["query"]))
-              if ind: rows.append({"id":it["id"],"asset_class":it["asset_class"],"query":it["query"],**ind})
+              if ind:
+                  rows.append({"id": it["id"], "asset_class": it["asset_class"], "query": it["query"], **ind})
 
           out = {"generated_at": datetime.now(timezone.utc).isoformat(), "indicators": rows}
           os.makedirs("data", exist_ok=True)
@@ -173,7 +174,7 @@ jobs:
           echo "---- indicators.json (first 40 lines) ----"
           head -n 40 data/indicators.json || true
 
-      # Commit & push
+      # ---------- Commit & push ----------
       - name: Commit & push artifacts
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
@@ -184,5 +185,5 @@ jobs:
           ls -la data
           git add -A
           git diff --staged --name-status || true
-          git commit -m "update dynamic symbols, quotes, indicators" || echo "No changes"
+          git commit -m "update quotes (rich fields) and indicators" || echo "No changes"
           git push
