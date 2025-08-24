@@ -23,10 +23,7 @@ jobs:
           echo "HEAD commit:" 
           git log -1 --oneline
           echo "CWD=$(pwd)"
-          echo "Top tree:"
           ls -la
-          echo "Show first lines of scripts/fetch.py"
-          head -n 40 scripts/fetch.py
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -36,13 +33,66 @@ jobs:
       - name: Install deps
         run: |
           python -m pip install --upgrade pip
-          pip install yfinance pandas pyyaml
+          pip install yfinance pyyaml pandas
 
-      - name: Ensure data dir exists
-        run: mkdir -p data
+      - name: Generate quotes.json inline (no fetch.py)
+        run: |
+          mkdir -p data
+          python - <<'PY'
+          import json, yaml, os
+          from datetime import datetime, timezone
+          import yfinance as yf
 
-      - name: Run fetcher
-        run: python scripts/fetch.py
+          # read symbols.yaml from repo root
+          with open("symbols.yaml","r") as f:
+              uni = yaml.safe_load(f)["universe"]
+
+          def last_price(ticker):
+              t = yf.Ticker(ticker)
+              df = None
+              try:
+                  df = t.history(period="1d", interval="1m")
+              except Exception:
+                  df = None
+              if df is None or df.empty:
+                  try:
+                      df = t.history(period="5d", interval="5m")
+                  except Exception:
+                      df = None
+              if df is None or df.empty:
+                  try:
+                      df = t.history(period="1mo", interval="1d")
+                  except Exception:
+                      df = None
+              if df is None or df.empty:
+                  return None, None
+              last = df.tail(1)
+              try:
+                  ts = last.index[0].tz_convert("UTC").isoformat()
+              except Exception:
+                  ts = datetime.now(timezone.utc).isoformat()
+              return float(last["Close"].iloc[0]), ts
+
+          quotes = []
+          for it in uni:
+              px, ts = last_price(it["query"])
+              if px is None: 
+                  continue
+              quotes.append({
+                  "id": it["id"],
+                  "asset_class": it["asset_class"],
+                  "source": it["source"],
+                  "query": it["query"],
+                  "price": px,
+                  "ts": ts
+              })
+
+          out = {"generated_at": datetime.now(timezone.utc).isoformat(), "quotes": quotes}
+          os.makedirs("data", exist_ok=True)
+          with open("data/quotes.json","w") as f:
+              json.dump(out, f, indent=2)
+          print("Wrote data/quotes.json with", len(quotes), "quotes")
+          PY
 
       - name: Show output snippet
         run: |
