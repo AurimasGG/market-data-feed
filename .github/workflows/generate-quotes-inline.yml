@@ -184,20 +184,21 @@ jobs:
           echo "== Show changes =="
           git status
           ls -la data || true
-          git add -A
-          git diff --staged --name-status || true
 
-          echo "== Stash ALL local changes (incl. untracked) =="
+          echo "== Stash ALL (incl. untracked) =="
           git stash push --include-untracked -m "ci-autostash" || true
 
-          echo "== Rebase onto origin/main =="
+          echo "== Reset to remote main (clean tree) =="
           git fetch origin
-          git pull --rebase origin main
+          git checkout -B main origin/main
+          git reset --hard origin/main
 
-          echo "== Restore stashed changes =="
+          echo "== Restore stashed changes (may be empty) =="
           git stash pop || true
 
-          echo "== Stage, commit, push =="
+          echo "== Stage / commit / push =="
           git add -A
+          git diff --staged --name-status || true
           git commit -m "update quotes (rich fields) and indicators" || echo "No changes to commit"
-          git push origin HEAD:main
+          git push origin main
+
