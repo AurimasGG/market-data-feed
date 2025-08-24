@@ -1,0 +1,9 @@
+# asset_class: equity | crypto
+# source: yfinance | kraken | coingecko  (šiam minimaliam startui naudok yfinance)
+# query: kas paduodama šaltiniui; pvz. BTC-USD, AAPL, ETH-USD, GOOGL
+universe:
+  - { id: "AAPL",  asset_class: "equity", source: "yfinance", query: "AAPL" }
+  - { id: "AMZN",  asset_class: "equity", source: "yfinance", query: "AMZN" }
+  - { id: "GOOGL", asset_class: "equity", source: "yfinance", query: "GOOGL" }
+  - { id: "ETH",   asset_class: "crypto", source: "yfinance", query: "ETH-USD" }
+  - { id: "SOL",   asset_class: "crypto", source: "yfinance", query: "SOL-USD" }
