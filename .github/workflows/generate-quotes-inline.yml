@@ -174,16 +174,30 @@ jobs:
           echo "---- indicators.json (first 40 lines) ----"
           head -n 40 data/indicators.json || true
 
-      # ---------- Commit & push ----------
       - name: Commit & push artifacts
         run: |
+          set -e
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase
+
+          echo "== Show changes =="
           git status
-          ls -la data
+          ls -la data || true
           git add -A
           git diff --staged --name-status || true
-          git commit -m "update quotes (rich fields) and indicators" || echo "No changes"
-          git push
+
+          echo "== Stash ALL local changes (incl. untracked) =="
+          git stash push --include-untracked -m "ci-autostash" || true
+
+          echo "== Rebase onto origin/main =="
+          git fetch origin
+          git pull --rebase origin main
+
+          echo "== Restore stashed changes =="
+          git stash pop || true
+
+          echo "== Stage, commit, push =="
+          git add -A
+          git commit -m "update quotes (rich fields) and indicators" || echo "No changes to commit"
+          git push origin HEAD:main
