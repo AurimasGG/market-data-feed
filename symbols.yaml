@@ -1,6 +1,68 @@
+# Investicijos: fiksuotas visatos sąrašas analizei (YFinance simboliai)
+# - Akcijos: S&P 500 didžiausi pagal rinkos cap (~top 50)
+# - Kripto: BTC + 10 didžiausių altcoin (be stablecoin'ų)
 universe:
+  # ---------- EQUITY (S&P 500 ~Top 50) ----------
   - { id: "AAPL",  asset_class: "equity", source: "yfinance", query: "AAPL" }
-  - { id: "AMZN",  asset_class: "equity", source: "yfinance", query: "AMZN" }
+  - { id: "MSFT",  asset_class: "equity", source: "yfinance", query: "MSFT" }
+  - { id: "NVDA",  asset_class: "equity", source: "yfinance", query: "NVDA" }
   - { id: "GOOGL", asset_class: "equity", source: "yfinance", query: "GOOGL" }
-  - { id: "ETH",   asset_class: "crypto", source: "yfinance", query: "ETH-USD" }
-  - { id: "SOL",   asset_class: "crypto", source: "yfinance", query: "SOL-USD" }
+  - { id: "AMZN",  asset_class: "equity", source: "yfinance", query: "AMZN" }
+  - { id: "META",  asset_class: "equity", source: "yfinance", query: "META" }
+  - { id: "BRK.B", asset_class: "equity", source: "yfinance", query: "BRK-B" }
+  - { id: "LLY",   asset_class: "equity", source: "yfinance", query: "LLY" }
+  - { id: "AVGO",  asset_class: "equity", source: "yfinance", query: "AVGO" }
+  - { id: "JPM",   asset_class: "equity", source: "yfinance", query: "JPM" }
+  - { id: "UNH",   asset_class: "equity", source: "yfinance", query: "UNH" }
+  - { id: "V",     asset_class: "equity", source: "yfinance", query: "V" }
+  - { id: "TSLA",  asset_class: "equity", source: "yfinance", query: "TSLA" }
+  - { id: "XOM",   asset_class: "equity", source: "yfinance", query: "XOM" }
+  - { id: "MA",    asset_class: "equity", source: "yfinance", query: "MA" }
+  - { id: "PG",    asset_class: "equity", source: "yfinance", query: "PG" }
+  - { id: "JNJ",   asset_class: "equity", source: "yfinance", query: "JNJ" }
+  - { id: "COST",  asset_class: "equity", source: "yfinance", query: "COST" }
+  - { id: "ORCL",  asset_class: "equity", source: "yfinance", query: "ORCL" }
+  - { id: "HD",    asset_class: "equity", source: "yfinance", query: "HD" }
+  - { id: "MRK",   asset_class: "equity", source: "yfinance", query: "MRK" }
+  - { id: "WMT",   asset_class: "equity", source: "yfinance", query: "WMT" }
+  - { id: "ADBE",  asset_class: "equity", source: "yfinance", query: "ADBE" }
+  - { id: "KO",    asset_class: "equity", source: "yfinance", query: "KO" }
+  - { id: "PEP",   asset_class: "equity", source: "yfinance", query: "PEP" }
+  - { id: "BAC",   asset_class: "equity", source: "yfinance", query: "BAC" }
+  - { id: "TMO",   asset_class: "equity", source: "yfinance", query: "TMO" }
+  - { id: "CSCO",  asset_class: "equity", source: "yfinance", query: "CSCO" }
+  - { id: "NFLX",  asset_class: "equity", source: "yfinance", query: "NFLX" }
+  - { id: "CRM",   asset_class: "equity", source: "yfinance", query: "CRM" }
+  - { id: "MCD",   asset_class: "equity", source: "yfinance", query: "MCD" }
+  - { id: "ABBV",  asset_class: "equity", source: "yfinance", query: "ABBV" }
+  - { id: "ACN",   asset_class: "equity", source: "yfinance", query: "ACN" }
+  - { id: "LIN",   asset_class: "equity", source: "yfinance", query: "LIN" }
+  - { id: "CAT",   asset_class: "equity", source: "yfinance", query: "CAT" }
+  - { id: "DHR",   asset_class: "equity", source: "yfinance", query: "DHR" }
+  - { id: "TXN",   asset_class: "equity", source: "yfinance", query: "TXN" }
+  - { id: "NKE",   asset_class: "equity", source: "yfinance", query: "NKE" }
+  - { id: "AMAT",  asset_class: "equity", source: "yfinance", query: "AMAT" }
+  - { id: "INTU",  asset_class: "equity", source: "yfinance", query: "INTU" }
+  - { id: "QCOM",  asset_class: "equity", source: "yfinance", query: "QCOM" }
+  - { id: "GE",    asset_class: "equity", source: "yfinance", query: "GE" }
+  - { id: "PM",    asset_class: "equity", source: "yfinance", query: "PM" }
+  - { id: "UPS",   asset_class: "equity", source: "yfinance", query: "UPS" }
+  - { id: "HON",   asset_class: "equity", source: "yfinance", query: "HON" }
+  - { id: "RTX",   asset_class: "equity", source: "yfinance", query: "RTX" }
+  - { id: "UNP",   asset_class: "equity", source: "yfinance", query: "UNP" }
+  - { id: "COP",   asset_class: "equity", source: "yfinance", query: "COP" }
+  - { id: "AMD",   asset_class: "equity", source: "yfinance", query: "AMD" }
+  - { id: "IBM",   asset_class: "equity", source: "yfinance", query: "IBM" }
+
+  # ---------- CRYPTO (BTC + 10 didžiausių altcoin) ----------
+  - { id: "BTC",  asset_class: "crypto", source: "yfinance", query: "BTC-USD" }
+  - { id: "ETH",  asset_class: "crypto", source: "yfinance", query: "ETH-USD" }
+  - { id: "BNB",  asset_class: "crypto", source: "yfinance", query: "BNB-USD" }
+  - { id: "SOL",  asset_class: "crypto", source: "yfinance", query: "SOL-USD" }
+  - { id: "XRP",  asset_class: "crypto", source: "yfinance", query: "XRP-USD" }
+  - { id: "TON",  asset_class: "crypto", source: "yfinance", query: "TON-USD" }
+  - { id: "ADA",  asset_class: "crypto", source: "yfinance", query: "ADA-USD" }
+  - { id: "DOGE", asset_class: "crypto", source: "yfinance", query: "DOGE-USD" }
+  - { id: "TRX",  asset_class: "crypto", source: "yfinance", query: "TRX-USD" }
+  - { id: "AVAX", asset_class: "crypto", source: "yfinance", query: "AVAX-USD" }
+  - { id: "SHIB", asset_class: "crypto", source: "yfinance", query: "SHIB-USD" }
