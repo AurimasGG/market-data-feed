@@ -3,7 +3,7 @@ name: Generate Quotes Inline
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/30 * * * *"   # kas 30 min.
+    - cron: "*/30 * * * *"
 
 permissions:
   contents: write
@@ -29,17 +29,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install yfinance pyyaml pandas requests lxml html5lib
 
-      # ---------- QUOTES su papildomais laukais ----------
       - name: Generate data/quotes.json (rich fields)
         run: |
           python - <<'PY'
           import json, yaml, os
           from datetime import datetime, timezone
           import yfinance as yf
-
           with open("symbols.yaml","r") as f:
               uni = yaml.safe_load(f)["universe"]
-
           def last_bar(ticker: str):
               t = yf.Ticker(ticker)
               df = None
@@ -54,11 +51,8 @@ jobs:
                   return None
               row = df.tail(1).iloc[0]
               ts = df.tail(1).index[0]
-              try:
-                  ts = ts.tz_convert("UTC").isoformat()
-              except Exception:
-                  ts = datetime.now(timezone.utc).isoformat()
-
+              try: ts = ts.tz_convert("UTC").isoformat()
+              except Exception: ts = datetime.now(timezone.utc).isoformat()
               fast = {}
               try:
                   fi = t.fast_info
@@ -69,9 +63,7 @@ jobs:
                       "previous_close": getattr(fi, "previous_close", None),
                       "currency": getattr(fi, "currency", None),
                   }
-              except Exception:
-                  pass
-
+              except Exception: pass
               return {
                   "price": float(row["Close"]),
                   "open": float(row.get("Open", row["Close"])),
@@ -81,91 +73,63 @@ jobs:
                   "ts": ts,
                   **{k: v for k, v in fast.items() if v is not None},
               }
-
-          quotes = []
+          quotes=[]
           for it in uni:
               bar = last_bar(it["query"])
-              if not bar:
-                  continue
+              if not bar: continue
               prev = bar.get("previous_close")
               pct = None
               if prev:
-                  try:
-                      pct = (bar["price"]/prev - 1) * 100.0
-                  except Exception:
-                      pct = None
+                  try: pct = (bar["price"]/prev - 1)*100.0
+                  except Exception: pct = None
               quotes.append({
                   "id": it["id"], "asset_class": it["asset_class"],
                   "source": it["source"], "query": it["query"],
-                  **bar, **({"pct_change": pct} if pct is not None else {}),
+                  **bar, **({"pct_change": pct} if pct is not None else {})
               })
-
           out = {"generated_at": datetime.now(timezone.utc).isoformat(), "quotes": quotes}
           os.makedirs("data", exist_ok=True)
-          with open("data/quotes.json","w") as f:
-              json.dump(out, f, indent=2)
+          with open("data/quotes.json","w") as f: json.dump(out, f, indent=2)
           print("WROTE data/quotes.json with", len(quotes), "quotes")
           PY
 
-      - name: Show quotes.json head
-        run: head -n 60 data/quotes.json || true
-
-      # ---------- (pasirinktinai) INDIKATORIAI ----------
       - name: Generate data/indicators.json (RSI14, SMA20/50)
         run: |
           python - <<'PY'
           import json, yaml, os
           from datetime import datetime, timezone
-          import yfinance as yf
-          import pandas as pd
-
+          import yfinance as yf, pandas as pd
           with open("symbols.yaml","r") as f:
               uni = yaml.safe_load(f)["universe"]
-
           def fetch_df(ticker):
               t = yf.Ticker(ticker)
               for per, iv in [("1mo","1d"), ("5d","5m")]:
                   try:
                       df = t.history(period=per, interval=iv)
-                      if df is not None and not df.empty:
-                          return df
-                  except Exception:
-                      pass
+                      if df is not None and not df.empty: return df
+                  except Exception: pass
               return None
-
           def indicators(df: pd.DataFrame):
-              out = {}
-              if df is None or df.empty or "Close" not in df.columns:
-                  return out
-              c = df["Close"].dropna()
-              if len(c) >= 20: out["sma20"] = float(c.rolling(20).mean().iloc[-1])
-              if len(c) >= 50: out["sma50"] = float(c.rolling(50).mean().iloc[-1])
-              if len(c) >= 15:
-                  d = c.diff()
-                  up = d.clip(lower=0).rolling(14).mean()
-                  down = (-d.clip(upper=0)).rolling(14).mean()
-                  rs = up / down
-                  rsi = 100 - (100 / (1 + rs))
-                  out["rsi14"] = float(rsi.iloc[-1])
+              out={}
+              if df is None or df.empty or "Close" not in df.columns: return out
+              c=df["Close"].dropna()
+              if len(c)>=20: out["sma20"]=float(c.rolling(20).mean().iloc[-1])
+              if len(c)>=50: out["sma50"]=float(c.rolling(50).mean().iloc[-1])
+              if len(c)>=15:
+                  d=c.diff(); up=d.clip(lower=0).rolling(14).mean(); down=(-d.clip(upper=0)).rolling(14).mean()
+                  rs=up/down; rsi=100-(100/(1+rs)); out["rsi14"]=float(rsi.iloc[-1])
               return out
-
           rows=[]
           for it in uni:
               ind = indicators(fetch_df(it["query"]))
-              if ind:
-                  rows.append({"id": it["id"], "asset_class": it["asset_class"], "query": it["query"], **ind})
-
-          out = {"generated_at": datetime.now(timezone.utc).isoformat(), "indicators": rows}
+              if ind: rows.append({"id":it["id"],"asset_class":it["asset_class"],"query":it["query"],**ind})
+          out={"generated_at": datetime.now(timezone.utc).isoformat(),"indicators":rows}
           os.makedirs("data", exist_ok=True)
-          with open("data/indicators.json","w") as f:
-              json.dump(out, f, indent=2)
+          with open("data/indicators.json","w") as f: json.dump(out, f, indent=2)
           print("WROTE data/indicators.json with", len(rows), "rows")
           PY
 
-      - name: Show indicators.json head
-        run: head -n 40 data/indicators.json || true
-
-      # ---------- Auto-commit & push (be pull/rebase) ----------
+      # ---- ČIA SVARBIAUSIA DALIS: JOKIŲ `git pull`/`rebase` ----
       - name: Commit & push artifacts
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
