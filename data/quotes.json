@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-08-24T13:27:11.151427+00:00",
+  "generated_at": "2025-08-24T13:34:32.491957+00:00",
   "quotes": [
     {
       "id": "AAPL",
@@ -406,40 +406,40 @@
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "BTC-USD",
-      "price": 114776.8359375,
-      "ts": "2025-08-24T13:23:00+00:00"
+      "price": 114634.6796875,
+      "ts": "2025-08-24T13:30:00+00:00"
     },
     {
       "id": "ETH",
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "ETH-USD",
-      "price": 4774.8134765625,
-      "ts": "2025-08-24T13:23:00+00:00"
+      "price": 4772.57373046875,
+      "ts": "2025-08-24T13:30:00+00:00"
     },
     {
       "id": "BNB",
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "BNB-USD",
-      "price": 863.2817993164062,
-      "ts": "2025-08-24T13:24:00+00:00"
+      "price": 863.5972900390625,
+      "ts": "2025-08-24T13:31:00+00:00"
     },
     {
       "id": "SOL",
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "SOL-USD",
-      "price": 205.1912841796875,
-      "ts": "2025-08-24T13:24:00+00:00"
+      "price": 205.03111267089844,
+      "ts": "2025-08-24T13:31:00+00:00"
     },
     {
       "id": "XRP",
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "XRP-USD",
-      "price": 3.016552209854126,
-      "ts": "2025-08-24T13:25:00+00:00"
+      "price": 3.0190391540527344,
+      "ts": "2025-08-24T13:32:00+00:00"
     },
     {
       "id": "TON",
@@ -447,47 +447,47 @@
       "source": "yfinance",
       "query": "TON-USD",
       "price": 0.020807411521673203,
-      "ts": "2025-08-24T13:21:00+00:00"
+      "ts": "2025-08-24T13:26:00+00:00"
     },
     {
       "id": "ADA",
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "ADA-USD",
-      "price": 0.8990100622177124,
-      "ts": "2025-08-24T13:24:00+00:00"
+      "price": 0.8986603617668152,
+      "ts": "2025-08-24T13:31:00+00:00"
     },
     {
       "id": "DOGE",
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "DOGE-USD",
-      "price": 0.23079639673233032,
-      "ts": "2025-08-24T13:24:00+00:00"
+      "price": 0.2310183346271515,
+      "ts": "2025-08-24T13:31:00+00:00"
     },
     {
       "id": "TRX",
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "TRX-USD",
-      "price": 0.3655988276004791,
-      "ts": "2025-08-24T13:25:00+00:00"
+      "price": 0.36546429991722107,
+      "ts": "2025-08-24T13:32:00+00:00"
     },
     {
       "id": "AVAX",
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "AVAX-USD",
-      "price": 25.155345916748047,
-      "ts": "2025-08-24T13:25:00+00:00"
+      "price": 25.153352737426758,
+      "ts": "2025-08-24T13:32:00+00:00"
     },
     {
       "id": "SHIB",
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "SHIB-USD",
-      "price": 1.287734994548373e-05,
-      "ts": "2025-08-24T13:25:00+00:00"
+      "price": 1.2893458915641531e-05,
+      "ts": "2025-08-24T13:31:00+00:00"
     }
   ]
 }
