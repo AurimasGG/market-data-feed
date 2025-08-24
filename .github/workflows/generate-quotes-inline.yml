@@ -1,14 +1,14 @@
-name: Fetch Market Data
+name: Generate Quotes Inline
 on:
+  workflow_dispatch:
   schedule:
     - cron: "*/10 * * * *"
-  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  fetch:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout latest main
@@ -35,7 +35,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install yfinance pyyaml pandas
 
-      - name: Generate quotes.json inline (no fetch.py)
+      - name: Generate data/quotes.json inline
         run: |
           mkdir -p data
           python - <<'PY'
@@ -43,41 +43,31 @@ jobs:
           from datetime import datetime, timezone
           import yfinance as yf
 
-          # read symbols.yaml from repo root
           with open("symbols.yaml","r") as f:
               uni = yaml.safe_load(f)["universe"]
 
           def last_price(ticker):
               t = yf.Ticker(ticker)
               df = None
-              try:
-                  df = t.history(period="1d", interval="1m")
-              except Exception:
-                  df = None
+              try: df = t.history(period="1d", interval="1m")
+              except Exception: df = None
               if df is None or df.empty:
-                  try:
-                      df = t.history(period="5d", interval="5m")
-                  except Exception:
-                      df = None
+                  try: df = t.history(period="5d", interval="5m")
+                  except Exception: df = None
               if df is None or df.empty:
-                  try:
-                      df = t.history(period="1mo", interval="1d")
-                  except Exception:
-                      df = None
+                  try: df = t.history(period="1mo", interval="1d")
+                  except Exception: df = None
               if df is None or df.empty:
                   return None, None
               last = df.tail(1)
-              try:
-                  ts = last.index[0].tz_convert("UTC").isoformat()
-              except Exception:
-                  ts = datetime.now(timezone.utc).isoformat()
+              try: ts = last.index[0].tz_convert("UTC").isoformat()
+              except Exception: ts = datetime.now(timezone.utc).isoformat()
               return float(last["Close"].iloc[0]), ts
 
           quotes = []
           for it in uni:
               px, ts = last_price(it["query"])
-              if px is None: 
-                  continue
+              if px is None: continue
               quotes.append({
                   "id": it["id"],
                   "asset_class": it["asset_class"],
@@ -91,15 +81,15 @@ jobs:
           os.makedirs("data", exist_ok=True)
           with open("data/quotes.json","w") as f:
               json.dump(out, f, indent=2)
-          print("Wrote data/quotes.json with", len(quotes), "quotes")
+          print("WROTE data/quotes.json with", len(quotes), "quotes")
           PY
 
-      - name: Show output snippet
+      - name: Preview output
         run: |
-          echo "quotes.json preview:"
+          echo "---- data/quotes.json (head) ----"
           head -n 40 data/quotes.json || true
 
-      - name: Commit & push JSON
+      - name: Commit & push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
