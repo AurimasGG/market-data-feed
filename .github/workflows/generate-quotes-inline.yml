@@ -1,4 +1,5 @@
 name: Generate Quotes Inline
+
 on:
   workflow_dispatch:
   schedule:
@@ -31,17 +32,14 @@ jobs:
       # ---------- QUOTES su papildomais laukais ----------
       - name: Generate data/quotes.json (rich fields)
         run: |
-          set -e
           python - <<'PY'
           import json, yaml, os
           from datetime import datetime, timezone
           import yfinance as yf
 
-          # 1) Visata iš symbols.yaml (repo root)
           with open("symbols.yaml","r") as f:
               uni = yaml.safe_load(f)["universe"]
 
-          # 2) Helper: paimti paskutinę žvakę su fallback
           def last_bar(ticker: str):
               t = yf.Ticker(ticker)
               df = None
@@ -61,7 +59,6 @@ jobs:
               except Exception:
                   ts = datetime.now(timezone.utc).isoformat()
 
-              # Greita papildoma info
               fast = {}
               try:
                   fi = t.fast_info
@@ -85,7 +82,6 @@ jobs:
                   **{k: v for k, v in fast.items() if v is not None},
               }
 
-          # 3) Sudarom quotes su papildomais laukais + % pokytis
           quotes = []
           for it in uni:
               bar = last_bar(it["query"])
@@ -95,16 +91,13 @@ jobs:
               pct = None
               if prev:
                   try:
-                      pct = (bar["price"] / prev - 1) * 100.0
+                      pct = (bar["price"]/prev - 1) * 100.0
                   except Exception:
                       pct = None
               quotes.append({
-                  "id": it["id"],
-                  "asset_class": it["asset_class"],
-                  "source": it["source"],
-                  "query": it["query"],
-                  **bar,
-                  **({"pct_change": pct} if pct is not None else {}),
+                  "id": it["id"], "asset_class": it["asset_class"],
+                  "source": it["source"], "query": it["query"],
+                  **bar, **({"pct_change": pct} if pct is not None else {}),
               })
 
           out = {"generated_at": datetime.now(timezone.utc).isoformat(), "quotes": quotes}
@@ -113,11 +106,11 @@ jobs:
               json.dump(out, f, indent=2)
           print("WROTE data/quotes.json with", len(quotes), "quotes")
           PY
-      - run: |
-          echo "---- quotes.json (first 60 lines) ----"
-          head -n 60 data/quotes.json || true
 
-      # ---------- (Pasirinktinai) INDIKATORIAI ----------
+      - name: Show quotes.json head
+        run: head -n 60 data/quotes.json || true
+
+      # ---------- (pasirinktinai) INDIKATORIAI ----------
       - name: Generate data/indicators.json (RSI14, SMA20/50)
         run: |
           python - <<'PY'
@@ -145,10 +138,8 @@ jobs:
               if df is None or df.empty or "Close" not in df.columns:
                   return out
               c = df["Close"].dropna()
-              if len(c) >= 20:
-                  out["sma20"] = float(c.rolling(20).mean().iloc[-1])
-              if len(c) >= 50:
-                  out["sma50"] = float(c.rolling(50).mean().iloc[-1])
+              if len(c) >= 20: out["sma20"] = float(c.rolling(20).mean().iloc[-1])
+              if len(c) >= 50: out["sma50"] = float(c.rolling(50).mean().iloc[-1])
               if len(c) >= 15:
                   d = c.diff()
                   up = d.clip(lower=0).rolling(14).mean()
@@ -158,8 +149,8 @@ jobs:
                   out["rsi14"] = float(rsi.iloc[-1])
               return out
 
-          rows = []
-          for it in yaml.safe_load(open("symbols.yaml"))["universe"]:
+          rows=[]
+          for it in uni:
               ind = indicators(fetch_df(it["query"]))
               if ind:
                   rows.append({"id": it["id"], "asset_class": it["asset_class"], "query": it["query"], **ind})
@@ -170,35 +161,18 @@ jobs:
               json.dump(out, f, indent=2)
           print("WROTE data/indicators.json with", len(rows), "rows")
           PY
-      - run: |
-          echo "---- indicators.json (first 40 lines) ----"
-          head -n 40 data/indicators.json || true
 
+      - name: Show indicators.json head
+        run: head -n 40 data/indicators.json || true
+
+      # ---------- Auto-commit & push (be pull/rebase) ----------
       - name: Commit & push artifacts
-        run: |
-          set -e
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          echo "== Show changes =="
-          git status
-          ls -la data || true
-
-          echo "== Stash ALL (incl. untracked) =="
-          git stash push --include-untracked -m "ci-autostash" || true
-
-          echo "== Reset to remote main (clean tree) =="
-          git fetch origin
-          git checkout -B main origin/main
-          git reset --hard origin/main
-
-          echo "== Restore stashed changes (may be empty) =="
-          git stash pop || true
-
-          echo "== Stage / commit / push =="
-          git add -A
-          git diff --staged --name-status || true
-          git commit -m "update quotes (rich fields) and indicators" || echo "No changes to commit"
-          git push origin main
-
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "update quotes (rich fields) and indicators"
+          file_pattern: |
+            data/quotes.json
+            data/indicators.json
+          commit_user_name: github-actions[bot]
+          commit_user_email: github-actions[bot]@users.noreply.github.com
+          commit_author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
