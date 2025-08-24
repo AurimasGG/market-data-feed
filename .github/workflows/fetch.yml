@@ -1,22 +1,37 @@
 name: Fetch Market Data
 on:
   schedule:
-    - cron: "*/10 * * * *"   # kas 10 min
+    - cron: "*/10 * * * *"   # kas 10 min.
   workflow_dispatch:
+
+permissions:
+  contents: write   # leidžia github-actions[bot] commit'inti/push'inti
 
 jobs:
   fetch:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: |
+
+      - name: Install deps
+        run: |
           python -m pip install --upgrade pip
           pip install yfinance pandas pyyaml
-      - run: |
-          python scripts/fetch.py
+
+      - name: Ensure data dir exists (saugiklis #1)
+        run: mkdir -p data
+
+      - name: Run fetcher
+        run: python scripts/fetch.py
+
       - name: Commit & push JSON
         run: |
           git config user.name "github-actions[bot]"
