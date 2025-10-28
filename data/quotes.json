@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-10-28T08:49:18.953856+00:00",
+  "generated_at": "2025-10-28T09:20:59.685760+00:00",
   "quotes": [
     {
       "id": "AAPL",
@@ -501,9 +501,9 @@
       "market_cap": 282218728061.8301,
       "year_high": 72.55000305175781,
       "year_low": 52.11000061035156,
-      "previous_close": 70.58,
+      "previous_close": 71.5,
       "currency": "USD",
-      "pct_change": 1.1122100648477407
+      "pct_change": -0.18881417654611488
     },
     {
       "id": "NFLX",
@@ -609,9 +609,9 @@
       "market_cap": 208580341458.636,
       "year_high": 486.3800048828125,
       "year_low": 408.6499938964844,
-      "previous_close": 450.0,
+      "previous_close": 447.1,
       "currency": "USD",
-      "pct_change": -1.1888902452256933
+      "pct_change": -0.5479772094644675
     },
     {
       "id": "CAT",
