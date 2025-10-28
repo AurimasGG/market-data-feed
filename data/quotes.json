@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-10-28T08:25:36.576559+00:00",
+  "generated_at": "2025-10-28T08:49:18.953856+00:00",
   "quotes": [
     {
       "id": "AAPL",
@@ -483,9 +483,9 @@
       "market_cap": 212890172640.2351,
       "year_high": 610.969970703125,
       "year_low": 385.4599914550781,
-      "previous_close": 570.01,
+      "previous_close": 560.0,
       "currency": "USD",
-      "pct_change": -1.1105081181415621
+      "pct_change": 0.6571415492466537
     },
     {
       "id": "CSCO",
@@ -771,9 +771,9 @@
       "market_cap": 238492633185.35583,
       "year_high": 186.69000244140625,
       "year_low": 116.12000274658203,
-      "previous_close": 157.68,
+      "previous_close": 153.12,
       "currency": "USD",
-      "pct_change": -2.815826044416503
+      "pct_change": 0.07837349344570477
     },
     {
       "id": "UPS",
