@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-27T00:27:56.823506+00:00",
+  "generated_at": "2026-08-27T10:09:59.351454+00:00",
   "quotes": [
     {
       "id": "AAPL",
@@ -15,9 +15,9 @@
       "market_cap": 4574545899151.611,
       "year_high": 344.57000732421875,
       "year_low": 225.9499969482422,
-      "previous_close": 309.35,
+      "previous_close": 311.78,
       "currency": "USD",
-      "pct_change": 1.3382868060045183
+      "pct_change": 0.5484605280566601
     },
     {
       "id": "MSFT",
@@ -33,9 +33,9 @@
       "market_cap": 3685817979110.1235,
       "year_high": 553.719970703125,
       "year_low": 349.20001220703125,
-      "previous_close": 489.65,
+      "previous_close": 495.95,
       "currency": "USD",
-      "pct_change": 1.3315661038975524
+      "pct_change": 0.044362017891796945
     },
     {
       "id": "NVDA",
@@ -51,9 +51,9 @@
       "market_cap": 5078174948699.951,
       "year_high": 236.5399932861328,
       "year_low": 164.07000732421875,
-      "previous_close": 213.63,
+      "previous_close": 219.53,
       "currency": "USD",
-      "pct_change": -1.7226059316377884
+      "pct_change": -4.3638696541510535
     },
     {
       "id": "GOOGL",
@@ -68,10 +68,10 @@
       "ts": "2026-08-26T19:59:00+00:00",
       "market_cap": 4182637712202.0,
       "year_high": 408.6099853515625,
-      "year_low": 205.64999389648438,
-      "previous_close": 346.3,
+      "year_low": 206.1999969482422,
+      "previous_close": 342.65,
       "currency": "USD",
-      "pct_change": -1.2243726368484698
+      "pct_change": -0.17218807570589245
     },
     {
       "id": "AMZN",
@@ -87,9 +87,9 @@
       "market_cap": 2807461683353.2734,
       "year_high": 287.20001220703125,
       "year_low": 196.0,
-      "previous_close": 260.55,
+      "previous_close": 261.9124,
       "currency": "USD",
-      "pct_change": -0.10362741151530575
+      "pct_change": -0.6232622894918771
     },
     {
       "id": "META",
@@ -105,9 +105,9 @@
       "market_cap": 1467720273788.4858,
       "year_high": 790.7999877929688,
       "year_low": 520.260009765625,
-      "previous_close": 567.76,
+      "previous_close": 579.11,
       "currency": "USD",
-      "pct_change": 1.4706892615828027
+      "pct_change": -0.5180388265506597
     },
     {
       "id": "BRK.B",
@@ -123,9 +123,9 @@
       "market_cap": 1080865789928.0535,
       "year_high": 537.739990234375,
       "year_low": 464.010009765625,
-      "previous_close": 504.32,
+      "previous_close": 504.27,
       "currency": "USD",
-      "pct_change": 0.11897474376079131
+      "pct_change": 0.12890186363145872
     },
     {
       "id": "LLY",
@@ -141,9 +141,9 @@
       "market_cap": 1060646176189.9026,
       "year_high": 1292.6500244140625,
       "year_low": 712.0499877929688,
-      "previous_close": 1231.8838,
+      "previous_close": 1190.0,
       "currency": "USD",
-      "pct_change": -3.464112366970007
+      "pct_change": -0.06638983718487701
     },
     {
       "id": "AVGO",
@@ -159,9 +159,9 @@
       "market_cap": 1691747925184.041,
       "year_high": 495.0,
       "year_low": 287.1700134277344,
-      "previous_close": 357.602,
+      "previous_close": 362.13,
       "currency": "USD",
-      "pct_change": -0.4812579451762944
+      "pct_change": -1.7256200914338438
     },
     {
       "id": "JPM",
@@ -177,9 +177,9 @@
       "market_cap": 947643378517.5,
       "year_high": 366.5,
       "year_low": 279.1000061035156,
-      "previous_close": 356.73,
+      "previous_close": 356.89,
       "currency": "USD",
-      "pct_change": -0.03924639422234755
+      "pct_change": -0.08406054025311693
     },
     {
       "id": "UNH",
@@ -195,9 +195,9 @@
       "market_cap": 359944518361.0447,
       "year_high": 461.6199951171875,
       "year_low": 255.97000122070312,
-      "previous_close": 396.3,
+      "previous_close": 400.75,
       "currency": "USD",
-      "pct_change": 1.1758747047888152
+      "pct_change": 0.05239961449234887
     },
     {
       "id": "V",
@@ -211,11 +211,11 @@
       "volume": 98720.0,
       "ts": "2026-08-26T19:59:00+00:00",
       "market_cap": 716759431334.5479,
-      "year_high": 384.20001220703125,
+      "year_high": 385.57000732421875,
       "year_low": 293.8900146484375,
-      "previous_close": 384.14,
+      "previous_close": 381.7937,
       "currency": "USD",
-      "pct_change": -0.08590681558968694
+      "pct_change": 0.528111794037911
     },
     {
       "id": "TSLA",
@@ -231,9 +231,9 @@
       "market_cap": 1365832508720.4292,
       "year_high": 498.8299865722656,
       "year_low": 297.3800048828125,
-      "previous_close": 350.7001,
+      "previous_close": 347.6908,
       "currency": "USD",
-      "pct_change": -1.374420799192111
+      "pct_change": -0.5208061637487993
     },
     {
       "id": "XOM",
@@ -249,9 +249,9 @@
       "market_cap": 650463362991.2476,
       "year_high": 176.41000366210938,
       "year_low": 108.3499984741211,
-      "previous_close": 159.9969,
+      "previous_close": 158.13,
       "currency": "USD",
-      "pct_change": -1.123086167143128
+      "pct_change": 0.04426544504028129
     },
     {
       "id": "MA",
@@ -267,9 +267,9 @@
       "market_cap": 524265643127.4463,
       "year_high": 601.6199951171875,
       "year_low": 464.5199890136719,
-      "previous_close": 598.5,
+      "previous_close": 596.15,
       "currency": "USD",
-      "pct_change": -0.006679703816836469
+      "pct_change": 0.38749005663947234
     },
     {
       "id": "PG",
@@ -282,12 +282,12 @@
       "low": 144.94000244140625,
       "volume": 159301.0,
       "ts": "2026-08-26T19:59:00+00:00",
-      "market_cap": 337646851810.0,
+      "market_cap": 337042793700.0,
       "year_high": 167.25,
       "year_low": 137.6199951171875,
-      "previous_close": 145.5789,
+      "previous_close": 144.52,
       "currency": "USD",
-      "pct_change": -0.37704723741086577
+      "pct_change": 0.35289148858073105
     },
     {
       "id": "JNJ",
@@ -303,9 +303,9 @@
       "market_cap": 650672621190.0,
       "year_high": 276.4700012207031,
       "year_low": 173.3300018310547,
-      "previous_close": 272.9,
+      "previous_close": 269.99,
       "currency": "USD",
-      "pct_change": -1.0406751342639131
+      "pct_change": 0.025925981922947372
     },
     {
       "id": "COST",
@@ -321,9 +321,9 @@
       "market_cap": 424018951915.05615,
       "year_high": 1096.5,
       "year_low": 844.0599975585938,
-      "previous_close": 961.16,
+      "previous_close": 955.0,
       "currency": "USD",
-      "pct_change": -0.5254083241538865
+      "pct_change": 0.11622883262434325
     },
     {
       "id": "ORCL",
@@ -339,9 +339,9 @@
       "market_cap": 428815703705.2002,
       "year_high": 345.7200012207031,
       "year_low": 114.5,
-      "previous_close": 144.92,
+      "previous_close": 151.37,
       "currency": "USD",
-      "pct_change": 2.725638364054306
+      "pct_change": -1.651585441509218
     },
     {
       "id": "HD",
@@ -357,9 +357,9 @@
       "market_cap": 334076377355.5142,
       "year_high": 426.75,
       "year_low": 289.1000061035156,
-      "previous_close": 337.5536,
+      "previous_close": 335.35,
       "currency": "USD",
-      "pct_change": -0.8068684285205019
+      "pct_change": -0.15506587974783992
     },
     {
       "id": "MRK",
@@ -375,9 +375,9 @@
       "market_cap": 377723992836.22064,
       "year_high": 156.9199981689453,
       "year_low": 77.58000183105469,
-      "previous_close": 156.5,
+      "previous_close": 152.5623,
       "currency": "USD",
-      "pct_change": -2.146965246231025
+      "pct_change": 0.37866457810904475
     },
     {
       "id": "WMT",
@@ -392,10 +392,10 @@
       "ts": "2026-08-26T19:59:00+00:00",
       "market_cap": 830345949889.3438,
       "year_high": 135.16000366210938,
-      "year_low": 95.5999984741211,
-      "previous_close": 105.31,
+      "year_low": 95.69999694824219,
+      "previous_close": 104.2644,
       "currency": "USD",
-      "pct_change": -0.9115957894586524
+      "pct_change": 0.08209750799035298
     },
     {
       "id": "ADBE",
@@ -411,9 +411,9 @@
       "market_cap": 108704325485.22949,
       "year_high": 370.8599853515625,
       "year_low": 190.1199951171875,
-      "previous_close": 269.99,
+      "previous_close": 277.01,
       "currency": "USD",
-      "pct_change": 1.2518964099364815
+      "pct_change": -1.3140337470894492
     },
     {
       "id": "KO",
@@ -429,9 +429,9 @@
       "market_cap": 387573643687.64294,
       "year_high": 92.48999786376953,
       "year_low": 65.3499984741211,
-      "previous_close": 91.55,
+      "previous_close": 89.885,
       "currency": "USD",
-      "pct_change": -1.5892941335847843
+      "pct_change": 0.23363322100808936
     },
     {
       "id": "PEP",
@@ -447,9 +447,9 @@
       "market_cap": 194073933964.27478,
       "year_high": 171.47999572753906,
       "year_low": 133.72999572753906,
-      "previous_close": 142.3199,
+      "previous_close": 142.01,
       "currency": "USD",
-      "pct_change": -0.09127153588059933
+      "pct_change": 0.12675335638776541
     },
     {
       "id": "BAC",
@@ -465,9 +465,9 @@
       "market_cap": 435158727552.9238,
       "year_high": 65.2300033569336,
       "year_low": 46.119998931884766,
-      "previous_close": 62.43,
+      "previous_close": 62.17,
       "currency": "USD",
-      "pct_change": -0.3283702160482238
+      "pct_change": 0.08846465195606612
     },
     {
       "id": "TMO",
@@ -483,9 +483,9 @@
       "market_cap": 234312560735.39,
       "year_high": 647.0,
       "year_low": 435.2699890136719,
-      "previous_close": 628.15,
+      "previous_close": 634.06,
       "currency": "USD",
-      "pct_change": 0.9233482778048696
+      "pct_change": -0.017346590696254438
     },
     {
       "id": "CSCO",
@@ -501,9 +501,9 @@
       "market_cap": 442859601365.0608,
       "year_high": 130.3699951171875,
       "year_low": 66.12999725341797,
-      "previous_close": 111.13,
+      "previous_close": 112.2989,
       "currency": "USD",
-      "pct_change": 1.1608010158780768
+      "pct_change": 0.1078355789284835
     },
     {
       "id": "NFLX",
@@ -519,9 +519,9 @@
       "market_cap": 339194522194.7594,
       "year_high": 126.70999908447266,
       "year_low": 65.08000183105469,
-      "previous_close": 81.86,
+      "previous_close": 80.99,
       "currency": "USD",
-      "pct_change": -0.4886402584013516
+      "pct_change": 0.5803174274264356
     },
     {
       "id": "CRM",
@@ -537,9 +537,9 @@
       "market_cap": 168402776000.97656,
       "year_high": 269.1099853515625,
       "year_low": 146.32000732421875,
-      "previous_close": 203.7697,
+      "previous_close": 232.3187,
       "currency": "USD",
-      "pct_change": 1.148502751072189
+      "pct_change": -11.281355908778945
     },
     {
       "id": "MCD",
@@ -555,9 +555,9 @@
       "market_cap": 188890748686.90863,
       "year_high": 341.75,
       "year_low": 260.9599914550781,
-      "previous_close": 268.4,
+      "previous_close": 266.75,
       "currency": "USD",
-      "pct_change": -0.5476927437476631
+      "pct_change": 0.06747616711575422
     },
     {
       "id": "ABBV",
@@ -573,9 +573,9 @@
       "market_cap": 464575123440.8721,
       "year_high": 267.4700012207031,
       "year_low": 190.75,
-      "previous_close": 265.85,
+      "previous_close": 261.95,
       "currency": "USD",
-      "pct_change": -1.1246998865666824
+      "pct_change": 0.347388948869054
     },
     {
       "id": "ACN",
@@ -591,9 +591,9 @@
       "market_cap": 110994062718.41858,
       "year_high": 291.0899963378906,
       "year_low": 118.1500015258789,
-      "previous_close": 186.31,
+      "previous_close": 182.6,
       "currency": "USD",
-      "pct_change": -2.6461248012385252
+      "pct_change": -0.6681243796207492
     },
     {
       "id": "LIN",
@@ -609,9 +609,9 @@
       "market_cap": 226032397133.87082,
       "year_high": 548.2000122070312,
       "year_low": 387.7799987792969,
-      "previous_close": 487.2,
+      "previous_close": 490.33,
       "currency": "USD",
-      "pct_change": 0.6321836574911588
+      "pct_change": -0.01019746307652225
     },
     {
       "id": "CAT",
@@ -627,9 +627,9 @@
       "market_cap": 377820578149.01056,
       "year_high": 1073.4599609375,
       "year_low": 410.5199890136719,
-      "previous_close": 810.5,
+      "previous_close": 828.26,
       "currency": "USD",
-      "pct_change": 1.38364176482495
+      "pct_change": -0.7902812517921576
     },
     {
       "id": "DHR",
@@ -645,9 +645,9 @@
       "market_cap": 151395077018.50864,
       "year_high": 242.8000030517578,
       "year_low": 160.92999267578125,
-      "previous_close": 214.31,
+      "previous_close": 215.36,
       "currency": "USD",
-      "pct_change": 0.559933977339333
+      "pct_change": 0.06964826654713985
     },
     {
       "id": "TXN",
@@ -663,9 +663,9 @@
       "market_cap": 239060836730.98126,
       "year_high": 334.0299987792969,
       "year_low": 152.72999572753906,
-      "previous_close": 260.54,
+      "previous_close": 263.3,
       "currency": "USD",
-      "pct_change": 0.502804215673458
+      "pct_change": -0.5507003025007173
     },
     {
       "id": "NKE",
@@ -678,12 +678,12 @@
       "low": 38.58000183105469,
       "volume": 538403.0,
       "ts": "2026-08-26T19:59:00+00:00",
-      "market_cap": 57147430829.435425,
-      "year_high": 79.51000213623047,
-      "year_low": 38.86000061035156,
-      "previous_close": 39.5471,
+      "market_cap": 57248215175.13394,
+      "year_high": 79.12999725341797,
+      "year_low": 38.40999984741211,
+      "previous_close": 38.7285,
       "currency": "USD",
-      "pct_change": -2.4113064422411012
+      "pct_change": -0.3485850730586715
     },
     {
       "id": "AMAT",
@@ -699,9 +699,9 @@
       "market_cap": 380736317003.655,
       "year_high": 739.6699829101562,
       "year_low": 154.47000122070312,
-      "previous_close": 478.62,
+      "previous_close": 491.0,
       "currency": "USD",
-      "pct_change": 0.1984888479835245
+      "pct_change": -2.3279007486316172
     },
     {
       "id": "INTU",
@@ -717,9 +717,9 @@
       "market_cap": 94610978895.62988,
       "year_high": 705.0800170898438,
       "year_low": 252.83999633789062,
-      "previous_close": 320.8768,
+      "previous_close": 348.2162,
       "currency": "USD",
-      "pct_change": 7.742286516414754
+      "pct_change": -0.7168531444823323
     },
     {
       "id": "QCOM",
@@ -735,9 +735,9 @@
       "market_cap": 174862864235.42477,
       "year_high": 259.9200134277344,
       "year_low": 121.98999786376953,
-      "previous_close": 160.01,
+      "previous_close": 164.7,
       "currency": "USD",
-      "pct_change": 2.349855804300316
+      "pct_change": -0.5646604295926227
     },
     {
       "id": "GE",
@@ -753,9 +753,9 @@
       "market_cap": 367701794180.7396,
       "year_high": 388.8399963378906,
       "year_low": 268.010009765625,
-      "previous_close": 349.85,
+      "previous_close": 355.0623,
       "currency": "USD",
-      "pct_change": 1.2834061277377629
+      "pct_change": -0.20343011975908487
     },
     {
       "id": "PM",
@@ -771,9 +771,9 @@
       "market_cap": 302526878022.9215,
       "year_high": 207.75999450683594,
       "year_low": 142.11000061035156,
-      "previous_close": 194.023,
+      "previous_close": 194.0,
       "currency": "USD",
-      "pct_change": 0.044840359313869094
+      "pct_change": 0.05670134554203177
     },
     {
       "id": "UPS",
@@ -789,9 +789,9 @@
       "market_cap": 89885075436.48967,
       "year_high": 122.41000366210938,
       "year_low": 82.0,
-      "previous_close": 105.0,
+      "previous_close": 105.65,
       "currency": "USD",
-      "pct_change": 0.6142825172060995
+      "pct_change": -0.0047357850767593135
     },
     {
       "id": "HON",
@@ -807,9 +807,9 @@
       "market_cap": 69939151426.36551,
       "year_high": 260.2831726074219,
       "year_low": 195.86785888671875,
-      "previous_close": 216.0,
+      "previous_close": 220.311,
       "currency": "USD",
-      "pct_change": 2.1759245130750893
+      "pct_change": 0.176567192851107
     },
     {
       "id": "RTX",
@@ -825,9 +825,9 @@
       "market_cap": 285711256350.0166,
       "year_high": 226.8800048828125,
       "year_low": 150.61000061035156,
-      "previous_close": 210.4,
+      "previous_close": 210.7,
       "currency": "USD",
-      "pct_change": 0.7224325898029127
+      "pct_change": 0.579021437563032
     },
     {
       "id": "UNP",
@@ -843,9 +843,9 @@
       "market_cap": 184531728288.00073,
       "year_high": 315.989990234375,
       "year_low": 210.83999633789062,
-      "previous_close": 310.42,
+      "previous_close": 310.01,
       "currency": "USD",
-      "pct_change": 0.0676518532351178
+      "pct_change": 0.19999512364521355
     },
     {
       "id": "COP",
@@ -861,9 +861,9 @@
       "market_cap": 159121380997.85767,
       "year_high": 135.8800048828125,
       "year_low": 85.56999969482422,
-      "previous_close": 131.1,
+      "previous_close": 131.6929,
       "currency": "USD",
-      "pct_change": -0.32799529447343767
+      "pct_change": -0.7767327100054011
     },
     {
       "id": "AMD",
@@ -879,9 +879,9 @@
       "market_cap": 785106209992.4557,
       "year_high": 584.72998046875,
       "year_low": 149.22000122070312,
-      "previous_close": 479.6301,
+      "previous_close": 485.06,
       "currency": "USD",
-      "pct_change": 0.28770291222861566
+      "pct_change": -0.8349462405424113
     },
     {
       "id": "IBM",
@@ -897,94 +897,94 @@
       "market_cap": 216568427629.03442,
       "year_high": 332.4599914550781,
       "year_low": 199.19000244140625,
-      "previous_close": 233.2,
+      "previous_close": 231.28,
       "currency": "USD",
-      "pct_change": -1.4408248979885796
+      "pct_change": -0.6226235135374347
     },
     {
       "id": "BTC",
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "BTC-USD",
-      "price": 78835.9765625,
-      "open": 78835.9765625,
-      "high": 78835.9765625,
-      "low": 78835.9765625,
+      "price": 80156.328125,
+      "open": 80156.328125,
+      "high": 80156.328125,
+      "low": 80156.328125,
       "volume": 0.0,
-      "ts": "2026-08-27T00:27:00+00:00",
+      "ts": "2026-08-27T10:09:00+00:00",
       "year_high": 126198.0703125,
       "year_low": 57747.765625,
       "previous_close": 79026.1796875,
       "currency": "USD",
-      "pct_change": -0.24068368957241848
+      "pct_change": 1.4300937258628021
     },
     {
       "id": "ETH",
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "ETH-USD",
-      "price": 2500.3701171875,
-      "open": 2500.3701171875,
-      "high": 2500.3701171875,
-      "low": 2500.3701171875,
+      "price": 2539.590087890625,
+      "open": 2539.590087890625,
+      "high": 2539.590087890625,
+      "low": 2539.590087890625,
       "volume": 0.0,
-      "ts": "2026-08-27T00:27:00+00:00",
+      "ts": "2026-08-27T10:09:00+00:00",
       "year_high": 4763.361328125,
       "year_low": 1506.5057373046875,
       "previous_close": 2507.239990234375,
       "currency": "USD",
-      "pct_change": -0.27400141484791307
+      "pct_change": 1.2902672971974338
     },
     {
       "id": "BNB",
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "BNB-USD",
-      "price": 704.4400024414062,
-      "open": 704.4400024414062,
-      "high": 704.4400024414062,
-      "low": 704.4400024414062,
+      "price": 713.75,
+      "open": 713.75,
+      "high": 713.75,
+      "low": 713.75,
       "volume": 0.0,
-      "ts": "2026-08-27T00:27:00+00:00",
+      "ts": "2026-08-27T10:09:00+00:00",
       "year_high": 1370.5460205078125,
       "year_low": 538.5992431640625,
       "previous_close": 707.6099853515625,
       "currency": "USD",
-      "pct_change": -0.4479844795549748
+      "pct_change": 0.8677117021443692
     },
     {
       "id": "SOL",
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "SOL-USD",
-      "price": 101.19999694824219,
-      "open": 101.19999694824219,
-      "high": 101.19999694824219,
-      "low": 101.19999694824219,
+      "price": 104.93000030517578,
+      "open": 104.93000030517578,
+      "high": 104.93000030517578,
+      "low": 104.93000030517578,
       "volume": 0.0,
-      "ts": "2026-08-27T00:27:00+00:00",
+      "ts": "2026-08-27T10:09:00+00:00",
       "year_high": 253.20989990234375,
       "year_low": 60.41471862792969,
       "previous_close": 102.0999984741211,
       "currency": "USD",
-      "pct_change": -0.8814902442011552
+      "pct_change": 2.771794195248689
     },
     {
       "id": "XRP",
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "XRP-USD",
-      "price": 1.4086999893188477,
-      "open": 1.4086999893188477,
-      "high": 1.4086999893188477,
-      "low": 1.4086999893188477,
+      "price": 1.4420000314712524,
+      "open": 1.4420000314712524,
+      "high": 1.4420000314712524,
+      "low": 1.4420000314712524,
       "volume": 0.0,
-      "ts": "2026-08-27T00:27:00+00:00",
+      "ts": "2026-08-27T10:09:00+00:00",
       "year_high": 3.1834518909454346,
       "year_low": 0.9884219765663147,
       "previous_close": 1.422700047492981,
       "currency": "USD",
-      "pct_change": -0.9840484787220993
+      "pct_change": 1.3565743539744046
     },
     {
       "id": "TON",
@@ -996,7 +996,7 @@
       "high": 0.00575932115316391,
       "low": 0.00575932115316391,
       "volume": 0.0,
-      "ts": "2026-08-27T00:25:00+00:00",
+      "ts": "2026-08-27T10:07:00+00:00",
       "year_high": 0.021720999851822853,
       "year_low": 0.004042999818921089,
       "previous_close": 0.00575932115316391,
@@ -1008,85 +1008,85 @@
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "ADA-USD",
-      "price": 0.21127000451087952,
-      "open": 0.21127000451087952,
-      "high": 0.21127000451087952,
-      "low": 0.21127000451087952,
+      "price": 0.21615999937057495,
+      "open": 0.21615999937057495,
+      "high": 0.21615999937057495,
+      "low": 0.21615999937057495,
       "volume": 0.0,
-      "ts": "2026-08-27T00:27:00+00:00",
+      "ts": "2026-08-27T10:09:00+00:00",
       "year_high": 0.9525709748268127,
       "year_low": 0.13869500160217285,
       "previous_close": 0.21240000426769257,
       "currency": "USD",
-      "pct_change": -0.5320149407289532
+      "pct_change": 1.7702424799123762
     },
     {
       "id": "DOGE",
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "DOGE-USD",
-      "price": 0.08708000183105469,
-      "open": 0.08708000183105469,
-      "high": 0.08708000183105469,
-      "low": 0.08708000183105469,
+      "price": 0.08918000012636185,
+      "open": 0.08918000012636185,
+      "high": 0.08918000012636185,
+      "low": 0.08918000012636185,
       "volume": 0.0,
-      "ts": "2026-08-27T00:27:00+00:00",
+      "ts": "2026-08-27T10:09:00+00:00",
       "year_high": 0.3056420087814331,
       "year_low": 0.06797300279140472,
       "previous_close": 0.0877000018954277,
       "currency": "USD",
-      "pct_change": -0.7069555883388645
+      "pct_change": 1.6875692120267738
     },
     {
       "id": "TRX",
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "TRX-USD",
-      "price": 0.335532546043396,
-      "open": 0.335532546043396,
-      "high": 0.335532546043396,
-      "low": 0.335532546043396,
+      "price": 0.33626556396484375,
+      "open": 0.33626556396484375,
+      "high": 0.33626556396484375,
+      "low": 0.33626556396484375,
       "volume": 0.0,
-      "ts": "2026-08-27T00:25:00+00:00",
+      "ts": "2026-08-27T10:07:00+00:00",
       "year_high": 0.37633201479911804,
       "year_low": 0.26813799142837524,
       "previous_close": 0.3360566198825836,
       "currency": "USD",
-      "pct_change": -0.15594807784793385
+      "pct_change": 0.062175261517882774
     },
     {
       "id": "AVAX",
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "AVAX-USD",
-      "price": 7.39300012588501,
-      "open": 7.39300012588501,
-      "high": 7.39300012588501,
-      "low": 7.39300012588501,
+      "price": 7.4629998207092285,
+      "open": 7.4629998207092285,
+      "high": 7.4629998207092285,
+      "low": 7.4629998207092285,
       "volume": 0.0,
-      "ts": "2026-08-27T00:27:00+00:00",
+      "ts": "2026-08-27T10:09:00+00:00",
       "year_high": 35.910240173339844,
       "year_low": 5.693565845489502,
       "previous_close": 7.441999912261963,
       "currency": "USD",
-      "pct_change": -0.6584222917849991
+      "pct_change": 0.28218098219356946
     },
     {
       "id": "SHIB",
       "asset_class": "crypto",
       "source": "yfinance",
       "query": "SHIB-USD",
-      "price": 5.32000012753997e-06,
-      "open": 5.32000012753997e-06,
-      "high": 5.32000012753997e-06,
-      "low": 5.32000012753997e-06,
+      "price": 5.4000001910026185e-06,
+      "open": 5.4000001910026185e-06,
+      "high": 5.4000001910026185e-06,
+      "low": 5.4000001910026185e-06,
       "volume": 0.0,
-      "ts": "2026-08-27T00:27:00+00:00",
+      "ts": "2026-08-27T10:09:00+00:00",
       "year_high": 1.4999999621068127e-05,
       "year_low": 3.999999989900971e-06,
       "previous_close": 5.370000053517288e-06,
       "currency": "USD",
-      "pct_change": -0.9310973087340746
+      "pct_change": 0.5586617725577447
     }
   ]
 }
